@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Weave: A Text Macro Language</title>
+    <link rel="stylesheet" href="./style-2024.css">
+  </head>
+  <body>
+    <h1><span class="name">Weave</span><br />A Text Macro Language</h1>
+    <hr />
+    <h2>Intro</h2>
+    <p>Weave is a text macro language heavily influenced by TRAC T64.</p>
+    <p>For more info please visit <a href="https://github.com/WeaveLang/weave">GitHub repository</a>.</p>
+    <hr />
+    <h2>Examples</h2>
+    
+    <p>The following is an example of the factorial function:</p>
+<pre>
+\def.macro(Factorial,(\
+  \ifeq.int(<1>,0,\
+    0,\
+    (\ifeq.int(<1>,1,1,(\mult.int(<1>,\call(Factorial,\sub.int(<1>,1))))))\
+  )\
+));
+\print(\call(Factorial,5));
+</pre>
+
+<p>
+The following is an example of a solution to the Tower of Hanoi problem.</p>
+<pre>
+\def.free($,(\print((
+))));
+\def.macro(Hanoi,,from,to,via\
+  (\ifeq.int(<1>,0,,\
+    (\ifeq.int(<1>,1,\
+      (\print(Move from <from> to <to>)$),\
+      (\call(Hanoi,\sub.int(<1>,1),<from>,<via>,<to>)\
+      \print(Move from <from> to <to>)$\
+      \call(Hanoi,\sub.int(<1>,1),<via>,<to>,<from>))\
+    ))\
+  ))\
+);
+\print(\call(Hanoi,3,A,C,B));
+</pre>
+<hr />
+
+
+  </body>
+</html>
+
+  
